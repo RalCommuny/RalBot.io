@@ -1,0 +1,21 @@
+{
+  "name": "ralbot-moderation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Discord moderation bot for bans, warnings, and staff notes",
+  "main": "src/bot.js",
+  "scripts": {
+    "start": "node src/bot.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.4.1",
+    "discord.js": "^14.22.1"
+  },
+  "allowScripts": {
+    "better-sqlite3@12.11.1": true
+  }
+}
