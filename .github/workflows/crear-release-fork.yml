@@ -1,0 +1,58 @@
+name: Crear Release por Fork
+
+on:
+  fork
+
+permissions:
+  contents: write
+
+jobs:name: Crear Release por Fork
+
+on:
+  fork
+
+permissions:
+  contents: write
+
+jobs:
+  release-por-fork:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generar la etiqueta y crear el Release
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const usuario = context.payload.forkee.owner.login;
+            const fecha = new Date().toISOString().replace(/[:.]/g, '-');
+            const nombreTag = `fork-${usuario}-${fecha}`;
+
+            await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: nombreTag,
+              name: `Nueva copia por @${usuario}`,
+              body: `Este Release se generó automáticamente porque el usuario [@${usuario}](https://github.com{usuario}) hizo un fork de este repositorio.`,
+              draft: false,
+              prerelease: false
+            });
+
+  release-por-fork:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generar la etiqueta y crear el Release
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const usuario = context.payload.forkee.owner.login;
+            const fecha = new Date().toISOString().replace(/[:.]/g, '-');
+            const nombreTag = `fork-${usuario}-${fecha}`;
+
+            await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: nombreTag,
+              name: `Nueva copia por @${usuario}`,
+              body: `Este Release se generó automáticamente porque el usuario [@${usuario}](https://github.com{usuario}) hizo un fork de este repositorio.`,
+              draft: false,
+              prerelease: false
+            });
